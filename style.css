@@ -2,18 +2,15 @@
 body {
     font-family: "Roboto", "Arial", sans-serif; /* Clean and modern sans-serif font */
     font-weight: 300; /* Thin font weight for a sleek appearance */
-    margin: 0;
-    padding: 0;
     background-color: #ffffff;
     color: #333;
     line-height: 1.8;
+    padding: 20px;
 }
 
 /* General Heading Styles */
 h1, h2, h3, h4, h5, h6 {
     font-weight: 300; /* Thin font for all headers */
-    margin: 0; /* Remove default margin for better spacing control */
-    color: #333;
 }
 
 p {
@@ -23,30 +20,63 @@ p {
 .container {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 20px;
     background-color: #ffffff;
     /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); */
     border-radius: 8px;
+    width: 100%;
 }
 
 /* Header Styles */
 header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    margin-bottom: 40px;
-    padding: 20px 0;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    width: 100%;
 }
 
-header h1 {
-    font-size: 2.5rem;
+.header-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Align title to the left and navigation to the right */
+    align-items: center; /* Vertically align title and navigation */
+    margin: 0 auto;
+    padding: 20px; /* Add padding to the right */
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 100;
+    margin: 0; /* Remove margin from the title */
+    padding-right: 0; /* Ensure no padding exists on the right */
+    text-align: right; /* Align the text to the right */
+}
+
+.navigation a {
+    font-size: 1rem;
+    font-weight: 300;
+    text-decoration: none;
     color: #333;
-    margin: 0;
+    margin: 0 15px;
+}
+
+.navigation {
+    margin-left: 100px;
+}
+
+.navigation a:hover,
+.navigation a.active {
+    color: #000;
 }
 
 /* Content Styles */
 .content {
     font-size: 1.125rem;
-    padding: 20px;
     color: #555;
+    width: 100%;
 }
 
 /* Footer Styles */
@@ -73,8 +103,8 @@ footer p {
     flex: 1; /* Take up half the available width */
     display: flex;
     flex-direction: column; /* Stack text vertically */
-    padding: 20px;
     box-sizing: border-box;
+    padding-right: 3%; /* Add padding to the right */
 }
 
 /* Right Half */
@@ -82,8 +112,8 @@ footer p {
     flex: 1; /* Take up the other half */
     display: flex;
     flex-direction: column; /* Stack text vertically */
-    padding: 20px;
     box-sizing: border-box;
+    padding-left: 3%; /* Add padding to the left */
 }
 
 /* Ensure Text Stacking */
@@ -99,6 +129,63 @@ div img {
     height: 100%; /* Make the image take up the full height of the div */
     object-fit: contain; /* Ensure the image scales proportionally and covers the entire div */
     object-position: top; /* Align the image to the top of the div */
+}
+
+/* Slideshow Container */
+.slideshow-container {
+    position: relative;
+    max-width: 100%; /* Adjust width as needed */
+    margin: auto;
+    overflow: hidden; /* Hide overflowing parts of the slides */
+    display: block; /* Ensure the container reserves space */
+    padding-bottom: 30px; /* Add space at the bottom */
+}
+
+/* Each Slide */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Make each slide take up the full container width */
+    opacity: 0; /* Start with slides invisible */
+    transition: opacity 1s ease-in-out; /* Smooth fade effect */
+}
+
+.slide img {
+    width: 100%; /* Make the image responsive */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Prevent extra space */
+}
+
+/* Show the Active Slide */
+.slide.active {
+    opacity: 1; /* Fully visible */
+    position: relative; /* Keep the active slide in normal flow */
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+    padding-bottom: 20px;
+}
+
+.contact-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.contact-list li i {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+.contact-list li i:hover {
+    color: #000;
 }
 
 /* Responsive Design */
