@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Beth O'Grady Art</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome for icons -->
+    </head>
+<body>
+    <div class="container">
+        <div id="header"></div>
+        <script>
+            fetch("header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("header").innerHTML = data;
+                });
+        </script>
+        <section class="content">
+            <div class="slideshow-container">
+                <div class="slide fade">
+                    <img src="images/image1.png" alt="Slide 1">
+                </div>
+                <div class="slide fade">
+                    <img src="images/image2.png" alt="Slide 2">
+                </div>
+                <div class="slide fade">
+                    <img src="images/image3.png" alt="Slide 3">
+                </div>
+                <div class="slide fade">
+                    <img src="images/image4.png" alt="Slide 4">
+                </div>
+                <div class="slide fade">
+                    <img src="images/image5.png" alt="Slide 5">
+                </div>
+                <div class="slide fade">
+                    <img src="images/image6.png" alt="Slide 6">
+                </div>
+            </div>
+            <div class="split-screen">
+                <div class="left">
+                    <h3>CONTACT</h3>
+                    <ul class="contact-list">
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span><a href="mailto:bethogradyart@gmail.com">bethogradyart@gmail.com</a></span>
+                        </li>
+                        <li>
+                            <i class="fab fa-instagram"></i>
+                            <span><a href="https://www.instagram.com/bethogradyart/">@bethogradyart</a></span>
+                        </li>
+                        <li>
+                            <i class="fab fa-facebook"></i>
+                            <span><a href="https://www.facebook.com/bethogrady.33/">beth o'grady</a></span>
+                        </li>
+                        <li>
+                            <i class="fab fa-twitter"></i>
+                            <span><a href="https://www.twitter.com/bethogrady">@bethogrady</a></span>
+                        </li>
+                        <li>
+                            <i class="fab fa-youtube"></i>
+                            <span><a href="https://www.youtube.com/channel/UCDATZIGi5CQtKTmvFeuxg5w">BethOGradyArt</a></span>
+                        </li>
+                    </ul>
+                    <img src="images/art1.png" alt="Artist">
+                </div>
+                <div class="right">
+                    <h3>ABOUT</h3>
+                    <p id="about-text">Loading...</p>
+                
+                    <h3>STUDIO</h3>
+                    <p id="studio-text">Loading...</p>
+                
+                    <h3>BIO</h3>
+                    <p id="bio-text">Loading...</p>
+                </div>
+        </div>
+        <div class="split-screen">
+            <div class="left60">
+                <h3>SELECT EXHIBITIONS</h3>
+                <ul id="exhibition-list">
+                    <li>Loading...</li>
+                </ul>
+                <h3>PUBLICATIONS & INTERVIEWS</h3>
+                <ul id="publication-list">
+                    <li>Loading...</li>
+                </ul>
+            </div>
+            <div class="right40">
+                <img src="images/art2.png" alt="Artist">
+                <img src="images/bethogradyabout2.png" alt="Artist">
+                <img src="images/art3.png" alt="Artist">
+            </div>
+        </div>
+        </section>
+        <footer>
+            <p>&copy; 2025 Beth O'Grady. All Rights Reserved.</p>
+        </footer>
+    </div>
+    <script src="scripts/about.js"></script>
+</body>
+</html>

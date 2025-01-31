@@ -25,7 +25,6 @@ ul {
 }
 
 a {
-    font-family: monospace; /* Use monospace font for links */
     color: #333; /* Blue link color */
     text-decoration: none; /* Remove underline from links */
 }
@@ -78,9 +77,13 @@ header {
     text-decoration: none;
     color: #333;
     margin: 0 15px;
+    white-space: nowrap; /* Prevent wrapping */
 }
 
+/* Navigation container */
 .navigation {
+    display: flex;
+    align-items: center;
     margin-left: 100px;
 }
 
@@ -225,6 +228,45 @@ div img {
 
 .contact-list li i:hover {
     color: #000;
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%; /* Position below "ARTWORK" */
+    left: 0;
+    background-color: #fff;
+    z-index: 1;
+    min-width: 100px;
+}
+
+/* Dropdown links */
+.dropdown-content a {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: #333;
+    text-decoration: none;
+    display: block;
+    white-space: nowrap; /* Prevent submenu wrapping */
+    padding: 0;
+    margin: 0;
+}
+
+/* Dropdown link hover effect */
+.dropdown-content a:hover {
+    background-color: #f0f0f0;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 
 /* Responsive Design */
