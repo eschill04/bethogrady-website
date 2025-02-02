@@ -14,14 +14,14 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Inject API Key
-        run: echo "const API_KEY = '${{ secrets.GOOGLE_API_KEY }}';" > scripts/config.js
+        run: echo "const API_KEY = '${{ secrets.GOOGLE_API_KEY }}';" > src/scripts/config.js
 
       - name: Build and Deploy
         run: |
           # If using a build step, add it here (e.g., npm run build)
           cp -r src/* dist/  # Example of copying static files
         env:
-          API_KEY: ${{ secrets.API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
