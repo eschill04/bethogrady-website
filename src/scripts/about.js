@@ -1,10 +1,10 @@
-import { API_KEY } from './config.js';
+import { GOOGLE_API_KEY } from './config.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 const sheetId = "1qJEYeTKL9V77fSJADUo6wTUvkOBpn_jZ5cTT7Iax46c";  
     
     async function fetchInformation() {
-        const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/information!A:B?key=${API_KEY}`;
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/information!A:B?key=${GOOGLE_API_KEY}`;
     
         try {
             const response = await fetch(url);
@@ -25,7 +25,7 @@ const sheetId = "1qJEYeTKL9V77fSJADUo6wTUvkOBpn_jZ5cTT7Iax46c";
     }
 
     async function fetchList(type) {
-        const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${type}!A:B?key=${API_KEY}`;
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${type}!A:B?key=${GOOGLE_API_KEY}`;
 
         try {
             const response = await fetch(url);
