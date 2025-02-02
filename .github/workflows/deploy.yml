@@ -19,8 +19,9 @@ jobs:
       - name: Build and Deploy
         run: |
           # If using a build step, add it here (e.g., npm run build)
-          mkdir -p dist  # Ensure dist/ exists before copying
+          mkdir -p dist/  # Ensure dist/ exists before copying
           cp -r src/* dist/  # Example of copying static files
+          mkdir -p dist/scripts  # Ensure scripts folder exists
           cp src/scripts/config.js dist/scripts/  # Ensure config.js is included
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
@@ -28,5 +29,5 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          personal_token: ${{ secrets.GH_DEPLOY_TOKEN }}
           publish_dir: ./dist
