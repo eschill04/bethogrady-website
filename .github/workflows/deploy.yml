@@ -14,12 +14,13 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Inject API Key
-        run: echo "const API_KEY = '${{ secrets.GOOGLE_API_KEY }}';" > src/scripts/config.js
+        run: echo "export const API_KEY = '${{ secrets.GOOGLE_API_KEY }}';" > src/scripts/config.js
 
       - name: Build and Deploy
         run: |
           # If using a build step, add it here (e.g., npm run build)
           cp -r src/* dist/  # Example of copying static files
+          cp src/scripts/config.js dist/scripts/  # Ensure config.js is included
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
 
