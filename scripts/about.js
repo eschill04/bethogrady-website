@@ -1,3 +1,5 @@
+import { API_KEY } from './config.js';
+
 document.addEventListener('DOMContentLoaded', () => {
     let currentSlide = 0;
 
@@ -26,11 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
     showSlides();
 
     const sheetId = "1qJEYeTKL9V77fSJADUo6wTUvkOBpn_jZ5cTT7Iax46c";  
-    const apiKey = "AIzaSyBAOs5p9WANUI48u1HeHxp3ztQZnbsdl4c";  // Public but restricted key :D 
-    const scriptUrl = "https://script.google.com/macros/s/AKfycbyACZ75mHIE36fblB0E_YlQ7j0Zk4aL5FbZbhL9C1f6d0uJrrYeMqGjL8IE_XakQm8JBw/exec";
     
     async function fetchInformation() {
-        const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/information!A:B?key=${apiKey}`;
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/information!A:B?key=${API_KEY}`;
     
         try {
             const response = await fetch(url);
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function fetchList(type) {
-        const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${type}!A:B?key=${apiKey}`;
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${type}!A:B?key=${API_KEY}`;
 
         try {
             const response = await fetch(url);
@@ -69,42 +69,42 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    async function fetchPageImages() {
-        const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/images!A:D?key=${apiKey}`;
+    // async function fetchPageImages() {
+    //     const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/images!A:D?key=${apiKey}`;
     
-        try {
-            const response = await fetch(url);
-            const data = await response.json();
+    //     try {
+    //         const response = await fetch(url);
+    //         const data = await response.json();
     
-            if (!data.values) {
-                console.error("No image data found.");
-                return;
-            }
+    //         if (!data.values) {
+    //             console.error("No image data found.");
+    //             return;
+    //         }
     
-            data.values.forEach((row, index) => {
-                if (index === 0) return; // Skip header row
-                let sectionId = row[0];  // The ID of the image in HTML
-                let fileId = row[3];   // The new file ID
-                let altText = row[2] || "Artwork"; // Alt text (fallback if empty)
+    //         data.values.forEach((row, index) => {
+    //             if (index === 0) return; // Skip header row
+    //             let sectionId = row[0];  // The ID of the image in HTML
+    //             let fileId = row[3];   // The new file ID
+    //             let altText = row[2] || "Artwork"; // Alt text (fallback if empty)
 
-                console.log(fileId);
+    //             console.log(fileId);
     
-                let imgElement = document.getElementById(sectionId);
-                if (imgElement) {
-                    imgElement.src = `${scriptUrl}?id=${fileId}`;
-                    imgElement.alt = altText;
-                } else {
-                    console.warn(`No image found in HTML with ID: ${sectionId}`);
-                }
-            });
+    //             let imgElement = document.getElementById(sectionId);
+    //             if (imgElement) {
+    //                 imgElement.src = `${scriptUrl}?id=${fileId}`;
+    //                 imgElement.alt = altText;
+    //             } else {
+    //                 console.warn(`No image found in HTML with ID: ${sectionId}`);
+    //             }
+    //         });
     
-        } catch (error) {
-            console.error("Error fetching page images:", error);
-        }
-    }
+    //     } catch (error) {
+    //         console.error("Error fetching page images:", error);
+    //     }
+    // }
 
     fetchInformation();
     fetchList("exhibition");
     fetchList("publication");
-    fetchPageImages();
+    // fetchPageImages();
 });

@@ -10,15 +10,9 @@
 <body>
     <div class="container">
         <div id="header"></div>
-        <script>
-            fetch("header.html")
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById("header").innerHTML = data;
-                });
-        </script>
-        <main id="home">
-            <p>Welcome.</p>
+        <script src="scripts/header.js"></script>
+        <main class="home">
+            <img src="images/home/image1.png" alt="Drawing on paper">
         </main>
     </div>
     <footer>

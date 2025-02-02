@@ -1,0 +1,30 @@
+name: Deploy Static Site
+
+on:
+  push:
+    branches:
+      - main  # Change to your deployment branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Inject API Key
+        run: echo "const API_KEY = '${{ secrets.GOOGLE_API_KEY }}';" > src/config.js
+
+      - name: Build and Deploy
+        run: |
+          # If using a build step, add it here (e.g., npm run build)
+          cp -r src/* dist/  # Example of copying static files
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist

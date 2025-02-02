@@ -165,11 +165,18 @@ footer p {
     justify-content: space-between;
 }
 
+.home {
+    text-align: center;
+}
 
-div img {
-    width: 70%; /* Make the image take up the full width of the div */
-    object-fit: contain; /* Ensure the image scales proportionally and covers the entire div */
+img {
+    width: 80%; /* Make the image take up the full width of the div */
     object-position: top; /* Align the image to the top of the div */
+}
+
+.split-screen img {
+    width: 70%; /* Make the image take up partial width of the div */
+    object-fit: contain; /* Ensure the image scales proportionally and covers the entire div */
     padding-bottom: 20px; /* Add space at the bottom */
 }
 
@@ -233,41 +240,44 @@ div img {
 /* Dropdown container */
 .dropdown {
     position: relative;
+    display: inline-block; /* Keeps button and dropdown together */
+    text-align: center;
 }
 
-/* Dropdown content (hidden by default) */
+/* Hide dropdown by default */
 .dropdown-content {
+    padding: 0px 0px 0px 10px;
     display: none;
     position: absolute;
-    top: 100%; /* Position below "ARTWORK" */
-    left: 0;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%); /* Center dropdown */
     background-color: #fff;
     z-index: 1;
-    min-width: 100px;
 }
 
-/* Dropdown links */
-.dropdown-content a {
+/* Show dropdown on hover (for desktop users) */
+@media (hover: hover) {
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+}
+
+/* Show dropdown when `.show` class is added (for click on mobile) */
+.dropdown-content.show {
+    display: block;
+}
+
+/* Dropdown button styling */
+.dropdown-toggle {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color:#333;
     font-family: 'Roboto', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 300;
-    color: #333;
-    text-decoration: none;
-    display: block;
-    white-space: nowrap; /* Prevent submenu wrapping */
-    padding: 0;
-    margin: 0;
+    cursor: pointer;
 }
 
-/* Dropdown link hover effect */
-.dropdown-content a:hover {
-    background-color: #f0f0f0;
-}
-
-/* Show dropdown on hover */
-.dropdown:hover .dropdown-content {
-    display: block;
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {
