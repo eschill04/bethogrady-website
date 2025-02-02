@@ -19,6 +19,7 @@ jobs:
       - name: Build and Deploy
         run: |
           # If using a build step, add it here (e.g., npm run build)
+          mkdir -p dist  # Ensure dist/ exists before copying
           cp -r src/* dist/  # Example of copying static files
           cp src/scripts/config.js dist/scripts/  # Ensure config.js is included
         env:
