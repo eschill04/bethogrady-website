@@ -7,14 +7,27 @@
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome for icons -->
     </head>
-<body>
+
+<body data-gallery="Cardboard">
     <div class="container">
         <div id="header"></div>
         <script src="scripts/header.js"></script>
-        <main id="2020-2021-gallery">
-            <p>Loading artwork...</p>
+        <main>
+            <div id="gallery" class="gallery-container"></div>
+        
+            <!-- Popup for Image Details -->
+            <div id="popup" class="popup">
+                <div class="popup-content">
+                    <button id="popup-close" class="popup-close">&times;</button> <!-- X Button -->
+                    <img id="popup-image" src="" alt="Full Artwork">
+                    <h2 id="popup-title"></h2>
+                    <p id="popup-description"></p>
+                    <p><span id="popup-date"></span></p>
+                </div>
+            </div>
+        
+            <script src="gallery.js"></script>
         </main>
-        <!-- <script src="gallery.js"></script> -->
     </div>
     <footer>
         <p>&copy; 2025 Beth O'Grady. All Rights Reserved.</p>

@@ -1,82 +1,53 @@
-// document.addEventListener('DOMContentLoaded', () => {
-// const sheetId = "1qJEYeTKL9V77fSJADUo6wTUvkOBpn_jZ5cTT7Iax46c";  
+document.addEventListener('DOMContentLoaded', () => {
     
-//     async function fetchInformation() {
-//         const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/information!A:B?key=${GOOGLE_API_KEY}`;
-    
-//         try {
-//             const response = await fetch(url);
-//             const data = await response.json();
-    
-//             let content = {};
-//             data.values.forEach(row => {
-//                 content[row[0]] = row[1];
-//             });
-    
-//             document.getElementById("about-text").innerText = content["About"] || "No content found.";
-//             document.getElementById("studio-text").innerText = content["Studio"] || "No content found.";
-//             document.getElementById("bio-text").innerText = content["Bio"] || "No content found.";
-    
-//         } catch (error) {
-//             console.error("Error fetching Google Sheet:", error);
-//         }
-//     }
+    async function fetchInformation() {
+        const filePath = "about/information.tsv";
 
-//     async function fetchList(type) {
-//         const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${type}!A:B?key=${GOOGLE_API_KEY}`;
+        try {
+            const response = await fetch(filePath);
+            const text = await response.text();
 
-//         try {
-//             const response = await fetch(url);
-//             const data = await response.json();
-//             let exhibitions = "";
+            let content = {};
+            const rows = text.split("\n").map(row => row.split("\t"));
 
-//             data.values.forEach((row, index) => {
-//                 if (index === 0) return; // Skip header
-//                 exhibitions += `<li>${row[0]} (${row[1]})</li>`;
-//             });
+            rows.forEach(row => {
+                if (row.length >= 2) {
+                    content[row[0].trim()] = row[1].trim();
+                }
+            });
 
-//             document.getElementById(`${type}-list`).innerHTML = exhibitions;
-//         } catch (error) {
-//             console.error("Error fetching exhibitions:", error);
-//         }
-//     }
+            document.getElementById("about-text").innerText = content["About"] || "No content found.";
+            document.getElementById("studio-text").innerText = content["Studio"] || "No content found.";
+            document.getElementById("bio-text").innerText = content["Bio"] || "No content found.";
 
-//     // async function fetchPageImages() {
-//     //     const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/images!A:D?key=${apiKey}`;
-    
-//     //     try {
-//     //         const response = await fetch(url);
-//     //         const data = await response.json();
-    
-//     //         if (!data.values) {
-//     //             console.error("No image data found.");
-//     //             return;
-//     //         }
-    
-//     //         data.values.forEach((row, index) => {
-//     //             if (index === 0) return; // Skip header row
-//     //             let sectionId = row[0];  // The ID of the image in HTML
-//     //             let fileId = row[3];   // The new file ID
-//     //             let altText = row[2] || "Artwork"; // Alt text (fallback if empty)
+        } catch (error) {
+            console.error("Error fetching local TSV file:", error);
+        }
+    }
 
-//     //             console.log(fileId);
-    
-//     //             let imgElement = document.getElementById(sectionId);
-//     //             if (imgElement) {
-//     //                 imgElement.src = `${scriptUrl}?id=${fileId}`;
-//     //                 imgElement.alt = altText;
-//     //             } else {
-//     //                 console.warn(`No image found in HTML with ID: ${sectionId}`);
-//     //             }
-//     //         });
-    
-//     //     } catch (error) {
-//     //         console.error("Error fetching page images:", error);
-//     //     }
-//     // }
+    async function fetchList(type) {
+        const filePath = `about/${type}.tsv`;
 
-//     fetchInformation();
-//     fetchList("exhibition");
-//     fetchList("publication");
-//     // fetchPageImages();
-// });
+        try {
+            const response = await fetch(filePath);
+            const text = await response.text();
+            let exhibitions = "";
+
+            const rows = text.split("\n").map(row => row.split("\t"));
+
+            rows.forEach((row, index) => {
+                if (index === 0 || row.length < 2) return; // Skip header or incomplete rows
+                exhibitions += `<li>${row[0].trim()} (${row[1].trim()})</li>`;
+            });
+
+            document.getElementById(`${type}-list`).innerHTML = exhibitions;
+
+        } catch (error) {
+            console.error(`Error fetching ${type} TSV file:`, error);
+        }
+    }
+
+    fetchInformation();
+    fetchList("exhibition");
+    fetchList("publication");
+});

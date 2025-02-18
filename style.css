@@ -181,7 +181,7 @@ img {
 }
 
 /* Slideshow Container */
-.slideshow-container {
+.top-image {
     position: relative;
     max-width: 100%; /* Adjust width as needed */
     margin: auto;
@@ -190,26 +190,10 @@ img {
     padding-bottom: 30px; /* Add space at the bottom */
 }
 
-/* Each Slide */
-.slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%; /* Make each slide take up the full container width */
-    opacity: 0; /* Start with slides invisible */
-    transition: opacity 1s ease-in-out; /* Smooth fade effect */
-}
-
-.slide img {
+.top-image img {
     width: 100%; /* Make the image responsive */
     height: auto; /* Maintain aspect ratio */
     display: block; /* Prevent extra space */
-}
-
-/* Show the Active Slide */
-.slide.active {
-    opacity: 1; /* Fully visible */
-    position: relative; /* Keep the active slide in normal flow */
 }
 
 .contact-list {
@@ -276,6 +260,90 @@ img {
     color:#333;
     font-family: 'Roboto', sans-serif;
     cursor: pointer;
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+    gap: 10px;
+    justify-content: center; /* Centers the grid */
+}
+
+.gallery-image {
+    width: 100%; /* Makes sure images take the full width of the grid cell */
+    height: auto;
+    aspect-ratio: 1; /* Ensures square images */
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.gallery-image:hover {
+    transform: scale(1.02);
+}
+
+/* Popup Styles */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: auto; /* Allows scrolling if needed */
+}
+
+.popup.show {
+    display: flex;
+}
+
+/* Popup Content */
+.popup-content {
+    background: white;
+    padding: 20px;
+    text-align: center;
+    max-width: 90%;
+    max-height: 90vh; /* Ensures the popup does not exceed viewport height */
+    overflow: auto; /* Enables scrolling inside the popup if needed */
+    position: relative; /* Required for positioning close button inside */
+}
+
+/* Popup Image */
+.popup img {
+    width: auto; /* Maintain aspect ratio */
+    max-width: 80%; /* Ensures it does not stretch too wide */
+    max-height: 55vh; /* Ensures the image does not exceed 80% of the screen height */
+    object-fit: contain; /* Prevents cropping */
+}
+
+/* Close Button (X in Top Right Corner) */ 
+.popup-close { 
+    position: absolute; 
+    top: 10px; 
+    right: 10px; 
+    background: none; 
+    border: none; 
+    font-size: 36px; 
+    font-weight: 100;
+    color: #333; 
+    cursor: pointer; 
+    transition: transform 0.2s;
+}
+
+.popup-close:hover { 
+    color: #555; 
+    transform: scale(1.1);
+
+}
+
+.popup-text {
+    max-width: 90%;
+    max-height: 25vh; /* Ensures text does not exceed the remaining space */
+    white-space: normal;
 }
 
 
