@@ -29,8 +29,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 const titleImage = `gallery/${category}/${folderName}/title_${folderName}.jpg`;
                 const metadataPath = `gallery/${category}/${folderName}/Metadata.json`;
+                console.log("Fetching metadata:", metadataPath); // Debugging
 
                 const metadataResponse = await fetch(metadataPath);
+                if (!metadataResponse.ok) {
+                    console.error(`Error loading metadata: ${metadataPath} returned ${metadataResponse.status}`);
+                    return;
+                }
                 const metadata = metadataResponse.ok ? await metadataResponse.json() : {};
 
                 const imgElement = document.createElement("img");
