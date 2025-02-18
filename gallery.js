@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 if (category !== page) return; // Only include images for the correct page
 
                 const titleImage = `gallery/${category}/${folderName}/title_${folderName}.jpg`;
-                const metadataPath = `gallery/${category}/${folderName}/metadata.json`;
+                const metadataPath = `gallery/${category}/${folderName}/Metadata.json`;
 
                 const metadataResponse = await fetch(metadataPath);
                 const metadata = metadataResponse.ok ? await metadataResponse.json() : {};
