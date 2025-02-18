@@ -398,4 +398,15 @@ img {
     div img {
         width: 100%; /* Make the image take up the full width of the div */
     }
+    .popup-content {
+        padding: 10px;
+        padding-top: 50px;
+
+    }
+    .popup-close { 
+        top: 0px;
+        left: 0px;
+        right: 0px;
+    }
+
 }
