@@ -57,13 +57,23 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     function openPopup(folderName, category, metadata) {
         const fullImageSrc = `gallery/${category}/${folderName}/1_${folderName}.jpg`;
+        const popupVideoIcon = document.getElementById("popup-video-icon");
 
         document.getElementById("popup-image").src = fullImageSrc;
         document.getElementById("popup-title").innerText = metadata.imageTitle || "Untitled";
         document.getElementById("popup-description").innerText = metadata.imageDescription || "No description available.";
         document.getElementById("popup-date").innerText = metadata.imageDate || "Unknown date";
 
+        if (metadata.video && metadata.video.includes("youtube.com")) {
+            popupVideoIcon.style.display = "block"; // Show video icon
+            popupVideoIcon.href = metadata.video; // Make image clickable
+        } else {
+            popupVideoIcon.style.display = "none"; // Hide video icon if no video
+            popupVideoIcon.removeAttribute("href"); // Remove link if no video
+        }
+
         document.getElementById("popup").classList.add("show");
+        
     }
 
     document.getElementById("popup-close").addEventListener("click", () => {
